@@ -1,6 +1,6 @@
 # Source
 
-The default theme for [Ghost](http://github.com/tryghost/ghost/). This is the latest development version of Source! If you're just looking to download the latest release, head over to the [releases](https://github.com/TryGhost/Source/releases) page.
+The default theme for [Ghost](http://github.com/tryghost/ghost/). This is a fork of the development version of Source. The theme was made translatable. If you're just looking to download the latest official release, head over to the [releases](https://github.com/TryGhost/Source/releases) page.
 
 &nbsp;
 
