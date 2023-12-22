@@ -33,10 +33,10 @@ Source styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'l
 
 ```bash
 # install dependencies
-yarn install
+npm install
 
 # run development server
-yarn dev
+npm run dev
 ```
 
 Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
@@ -45,7 +45,7 @@ The `zip` Gulp task packages the theme files into `dist/<theme-name>.zip`, which
 
 ```bash
 # create .zip file
-yarn zip
+npm run zip
 ```
 
 # PostCSS Features Used
