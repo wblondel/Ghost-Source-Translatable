@@ -1,22 +1,36 @@
-const {series, watch, src, dest, parallel} = require('gulp');
-const pump = require('pump');
-const path = require('path');
-const releaseUtils = require('@tryghost/release-utils');
-const inquirer = require('inquirer');
+import gulp from 'gulp';
+const {series, watch, src, dest, parallel} = gulp;
+
+import pump from 'pump';
+//const pump = require('pump');
+import path from 'path';
+//const path = require('path');
+import releaseUtils from '@tryghost/release-utils';
+//const releaseUtils = require('@tryghost/release-utils');
+import inquirer from 'inquirer';
+//const inquirer = require('inquirer');
 
 // gulp plugins and utils
-const livereload = require('gulp-livereload');
-const postcss = require('gulp-postcss');
-const zip = require('gulp-zip');
-const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
-const beeper = require('beeper');
-const fs = require('fs');
+import livereload from 'gulp-livereload';
+//const livereload = require('gulp-livereload');
+import postcss from 'gulp-postcss';
+//const postcss = require('gulp-postcss');
+import zip from 'gulp-zip';
+import concat from 'gulp-concat';
+//const concat = require('gulp-concat');
+import uglify from 'gulp-uglify';
+//const uglify = require('gulp-uglify');
+import fs from 'fs';
+//const fs = require('fs');
 
 // postcss plugins
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
-const easyimport = require('postcss-easy-import');
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
+import easyimport from 'postcss-easy-import';
+//const autoprefixer = require('autoprefixer');
+//const cssnano = require('cssnano');
+//const easyimport = require('postcss-easy-import');
+import { readFile } from 'fs/promises';
 
 const REPO = 'TryGhost/Source';
 const REPO_READONLY = 'TryGhost/Source';
@@ -29,9 +43,6 @@ function serve(done) {
 
 const handleError = (done) => {
     return function (err) {
-        if (err) {
-            beeper();
-        }
         return done(err);
     };
 };
@@ -71,7 +82,8 @@ function js(done) {
 }
 
 function zipper(done) {
-    const filename = require('./package.json').name + '.zip';
+   // const filename = require('./package.json').name + '.zip';
+    const filename = 'source.zip';
 
     pump([
         src([
@@ -93,11 +105,13 @@ const hbsWatcher = () => watch(['*.hbs', 'partials/**/*.hbs'], hbs);
 const watcher = parallel(cssWatcher, jsWatcher, hbsWatcher);
 const build = series(css, js);
 
-exports.build = build;
-exports.zip = series(build, zipper);
-exports.default = series(build, serve, watcher);
+export { build };
+const zipped = series(build, zipper);
+export { zipped as zip };
+const defaultExport = series(build, serve, watcher);
+export default defaultExport;
 
-exports.release = async () => {
+const release = async () => {
     // @NOTE: https://yarnpkg.com/lang/en/docs/cli/version/
     // require(./package.json) can run into caching issues, this re-reads from file everytime on release
     let packageJSON = JSON.parse(fs.readFileSync('./package.json'));
@@ -172,3 +186,5 @@ exports.release = async () => {
         process.exit(1);
     }
 };
+
+export { release };
