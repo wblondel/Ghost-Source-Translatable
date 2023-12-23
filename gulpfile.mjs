@@ -2,35 +2,22 @@ import gulp from 'gulp';
 const {series, watch, src, dest, parallel} = gulp;
 
 import pump from 'pump';
-//const pump = require('pump');
 import path from 'path';
-//const path = require('path');
 import releaseUtils from '@tryghost/release-utils';
-//const releaseUtils = require('@tryghost/release-utils');
 import inquirer from 'inquirer';
-//const inquirer = require('inquirer');
 
 // gulp plugins and utils
 import livereload from 'gulp-livereload';
-//const livereload = require('gulp-livereload');
 import postcss from 'gulp-postcss';
-//const postcss = require('gulp-postcss');
 import zip from 'gulp-zip';
 import concat from 'gulp-concat';
-//const concat = require('gulp-concat');
 import uglify from 'gulp-uglify';
-//const uglify = require('gulp-uglify');
 import fs from 'fs';
-//const fs = require('fs');
 
 // postcss plugins
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 import easyimport from 'postcss-easy-import';
-//const autoprefixer = require('autoprefixer');
-//const cssnano = require('cssnano');
-//const easyimport = require('postcss-easy-import');
-import { readFile } from 'fs/promises';
 
 const REPO = 'TryGhost/Source';
 const REPO_READONLY = 'TryGhost/Source';
